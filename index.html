@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Додосахур без рук</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at center, #ffe6f0 0%, #ffd1e3 100%);
+        font-family: 'Nunito', sans-serif;
+        overflow: hidden;
+    }
+
+    .scene {
+        position: relative;
+        width: 600px;
+        height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 20px;
+    }
+
+    svg {
+        width: 350px;
+        height: auto;
+        filter: drop-shadow(0px 15px 25px rgba(0,0,0,0.15));
+        animation: float 4s ease-in-out infinite;
+    }
+
+    /* Облако с текстом */
+    .speech-bubble {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        width: 260px;
+        background-color: #ffffff;
+        border: 4px solid #222;
+        border-radius: 30px;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        z-index: 10;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .speech-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 40px;
+        width: 30px;
+        height: 30px;
+        background-color: #ffffff;
+        border-bottom: 4px solid #222;
+        border-right: 4px solid #222;
+        transform: skew(30deg) rotate(45deg);
+        border-radius: 0 0 8px 0;
+        z-index: 11;
+    }
+
+    .speech-text {
+        color: #222;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 1.4;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* Цвета для SVG */
+    .fill-body { fill: #fca311; }
+    .fill-shadow { fill: #e58e09; }
+    .fill-white { fill: #ffffff; }
+    .fill-black { fill: #111111; }
+    .stroke-main { stroke: #222; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes popIn {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+<div class="scene">
+    
+    <div class="speech-bubble">
+        <p class="speech-text">
+            Это я твой додосахур.<br>
+            Хватит грустить!<br>
+            Я тебя люблю очень сильно!
+        </p>
+    </div>
+
+    <!-- Векторный персонаж без рук и биты -->
+    <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+        
+        <!-- ЛЕВАЯ НОГА -->
+        <path d="M 170 440 L 170 520 C 170 530, 160 550, 140 550 C 130 550, 120 570, 150 570 L 190 570 C 200 570, 195 550, 190 530 L 190 440 Z" class="fill-body stroke-main" />
+        <!-- Пальцы левой ноги -->
+        <path d="M 130 555 L 145 555 M 140 565 L 155 555 M 155 570 L 165 555" stroke="#222" stroke-width="3" fill="none" stroke-linecap="round"/>
+        
+        <!-- ПРАВАЯ НОГА -->
+        <path d="M 230 440 L 230 520 C 230 530, 240 550, 260 550 C 270 550, 280 570, 250 570 L 210 570 C 200 570, 205 550, 210 530 L 210 440 Z" class="fill-body stroke-main" />
+        <!-- Пальцы правой ноги -->
+        <path d="M 270 555 L 255 555 M 260 565 L 245 555 M 245 570 L 235 555" stroke="#222" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+        <!-- ТЕЛО (вытянутый прямоугольник со скруглениями) -->
+        <rect x="130" y="40" width="140" height="410" rx="30" class="fill-body stroke-main" />
+        <!-- Тень слева для объема -->
+        <path d="M 160 40 L 160 450 C 160 460, 150 450, 150 450 L 150 40 Z" class="fill-shadow" opacity="0.6"/>
+        
+        <!-- Текстура дерева на теле -->
+        <g stroke="#e58e09" stroke-width="2" opacity="0.4" fill="none">
+            <line x1="160" y1="60" x2="160" y2="430" />
+            <line x1="200" y1="60" x2="200" y2="430" />
+            <line x1="240" y1="60" x2="240" y2="430" />
+        </g>
+
+        <!-- ЛИЦО -->
+        <!-- Брови -->
+        <path d="M 165 90 Q 185 80, 200 90" class="stroke-main" fill="none" stroke-width="5"/>
+        <path d="M 235 90 Q 215 80, 200 90" class="stroke-main" fill="none" stroke-width="5"/>
+
+        <!-- Глаза (Белки) -->
+        <ellipse cx="175" cy="130" rx="20" ry="25" class="fill-white stroke-main" />
+        <ellipse cx="225" cy="130" rx="20" ry="25" class="fill-white stroke-main" />
+        
+        <!-- Зрачки -->
+        <circle cx="175" cy="130" r="10" class="fill-black" />
+        <circle cx="225" cy="130" r="10" class="fill-black" />
+        
+        <!-- Блики в глазах -->
+        <circle cx="172" cy="126" r="3" class="fill-white" />
+        <circle cx="222" cy="126" r="3" class="fill-white" />
+
+        <!-- Нос -->
+        <path d="M 200 140 C 200 155, 195 165, 195 165 C 195 170, 205 170, 205 165" class="stroke-main" fill="none" stroke-width="4"/>
+
+        <!-- Рот (Улыбка) -->
+        <!-- Внешний контур улыбки -->
+        <path d="M 160 180 Q 200 230 240 180" class="stroke-main" fill="none" stroke-width="4"/>
+        <!-- Заливка рта (черная) -->
+        <path d="M 163 182 Q 200 220 237 182 Z" class="fill-black" />
+        <!-- Зубы -->
+        <path d="M 168 185 Q 200 195 232 185 L 228 182 Q 200 190 172 182 Z" class="fill-white" stroke="#222" stroke-width="1.5"/>
+
+    </svg>
+
+</div>
+
+</body>
+</html>
